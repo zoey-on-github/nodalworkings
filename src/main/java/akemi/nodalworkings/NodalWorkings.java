@@ -1,15 +1,19 @@
 package akemi.nodalworkings;
 
-import io.github.mattidragon.nodeflow.client.ui.screen.EditorScreen;
+import com.jcraft.jorbis.Block;
 import io.github.mattidragon.nodeflow.graph.context.ContextType;
 import io.github.mattidragon.nodeflow.graph.data.DataType;
 import io.github.mattidragon.nodeflow.graph.node.NodeTypeTags;
 import io.github.mattidragon.nodeflow.graph.node.group.TagNodeGroup;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
+import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import org.slf4j.Logger;
@@ -23,10 +27,10 @@ public class NodalWorkings implements ModInitializer {
     // It is considered best practice to use your mod id as the logger's name.
     // That way, it's clear which mod wrote info, warnings, and errors.
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-    public record nodalPayload() implements CustomPayload {
+    public record nodalPayload(BlockPos pos) implements CustomPayload {
         public static final Identifier NODAL_PAYLOAD_ID = Identifier.of("akemi.nodalworkings","nodalpayload");
         public static final CustomPayload.Id<nodalPayload> ID = new CustomPayload.Id<>(NODAL_PAYLOAD_ID);
-        public static final PacketCodec<RegistryByteBuf,nodalPayload> CODEC = PacketCodec.tuple(BlockPos.PACKET_CODEC,)
+        public static final PacketCodec<RegistryByteBuf,nodalPayload> CODEC= PacketCodec.tuple(BlockPos.PACKET_CODEC,nodalPayload::pos, nodalPayload::new);
         @Override
         public Id<? extends CustomPayload> getId() {
             return ID;
@@ -51,6 +55,7 @@ public class NodalWorkings implements ModInitializer {
         // However, some things (like resources) may still be uninitialized.
         // Proceed with mild caution.
         nodalItems.initialize();
+        PayloadTypeRegistry.playS2C().register(nodalPayload.ID, nodalPayload.CODEC);
         LOGGER.info("hai im julie :3");
 
     }
