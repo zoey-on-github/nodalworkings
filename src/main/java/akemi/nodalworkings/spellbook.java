@@ -20,8 +20,11 @@ public class spellbook extends Item {
     @Override
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         NodalWorkings.LOGGER.info("meoww");
-        NodalWorkings.nodalPayload payload = new NodalWorkings.nodalPayload(user.getBlockPos());
-        ServerPlayNetworking.send((ServerPlayerEntity) user, payload);
+        if (!world.isClient() && user instanceof ServerPlayerEntity serverPlayer) {
+            NodalWorkings.nodalPayload payload = new NodalWorkings.nodalPayload(user.getBlockPos());
+            ServerPlayNetworking.send(serverPlayer, payload);
+        }
         return ActionResult.SUCCESS;
     }
 }
+
