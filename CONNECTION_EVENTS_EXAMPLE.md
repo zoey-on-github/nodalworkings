@@ -89,6 +89,7 @@ public void syncGraph() {
 ```java
 private void onGraphChanged() {
     var connections = graph.getConnections();
+    var invalidConnections = new ArrayList<Connector<?>>();
     
     for (var connection : connections) {
         var sourceNode = graph.getNode(connection.sourceUuid());
@@ -101,14 +102,17 @@ private void onGraphChanged() {
             
             // Prevent certain connections
             if (sourceType.equals("Number") && targetType.equals("String")) {
-                // Remove invalid connection
-                graph.removeConnections(connection.getTargetConnector(graph));
+                // Collect invalid connection for removal
+                invalidConnections.add(connection.getTargetConnector(graph));
                 
                 // Show warning
                 showToast(Text.literal("Cannot connect Number to String!").formatted(Formatting.RED));
             }
         }
     }
+    
+    // Remove invalid connections after iteration to avoid ConcurrentModificationException
+    invalidConnections.forEach(graph::removeConnections);
 }
 ```
 
