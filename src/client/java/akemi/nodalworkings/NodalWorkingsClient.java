@@ -1,6 +1,5 @@
 package akemi.nodalworkings;
 
-import io.github.mattidragon.nodeflow.client.ui.screen.EditorScreen;
 import io.github.mattidragon.nodeflow.graph.Graph;
 import io.github.mattidragon.nodeflow.graph.GraphEnvironment;
 import io.github.mattidragon.nodeflow.graph.context.ContextType;
@@ -37,7 +36,8 @@ public class NodalWorkingsClient implements ClientModInitializer {
 							new TagNodeGroup(NodeTypeTags.COMPARE_NUMBER),
 							DirectNodeGroup.misc(NodeType.REGISTRY.stream().toArray(NodeType[]::new)))));
 
-			MinecraftClient.getInstance().setScreen(new EditorScreen(Text.literal("Test Editor"), graph));
+			// Use CustomEditorScreen instead of EditorScreen to handle connection events
+			MinecraftClient.getInstance().setScreen(new CustomEditorScreen(Text.literal("Test Editor"), graph));
 		});
 		}
 	static void testNodes() {
