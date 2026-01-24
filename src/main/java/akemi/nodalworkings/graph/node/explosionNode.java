@@ -1,12 +1,22 @@
-﻿package akemi.nodalworkings.graph.node;
+package akemi.nodalworkings.graph.node;
 
 import com.mojang.datafixers.util.Either;
 import io.github.mattidragon.nodeflow.graph.Connector;
+import io.github.mattidragon.nodeflow.graph.Graph;
+import io.github.mattidragon.nodeflow.graph.context.ContextType;
 import io.github.mattidragon.nodeflow.graph.data.DataValue;
 import io.github.mattidragon.nodeflow.graph.node.Node;
+import io.github.mattidragon.nodeflow.graph.node.NodeType;
 import net.minecraft.text.Text;
 
-public class explosionNode extends Node {
+import java.util.List;
+
+public abstract class explosionNode extends Node {
+
+    protected explosionNode(NodeType<?> type, List<ContextType<?>> contexts, Graph graph) {
+        super(type, contexts, graph);
+    }
+
     @Override
     public Connector<?>[] getOutputs() {
         return new Connector[0];

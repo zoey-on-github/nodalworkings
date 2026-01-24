@@ -1,4 +1,4 @@
-﻿package akemi.nodalworkings;
+package akemi.nodalworkings;
 
 public class nodalTypes {
 }
