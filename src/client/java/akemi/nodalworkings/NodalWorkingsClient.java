@@ -1,5 +1,6 @@
 package akemi.nodalworkings;
 
+import akemi.nodalworkings.graph.node.ModNodeTypes;
 import io.github.mattidragon.nodeflow.client.ui.screen.EditorScreen;
 import io.github.mattidragon.nodeflow.graph.Graph;
 import io.github.mattidragon.nodeflow.graph.GraphEnvironment;
@@ -35,6 +36,7 @@ public class NodalWorkingsClient implements ClientModInitializer {
 							new TagNodeGroup(NodeTypeTags.ADVANCED_MATH),
 							new TagNodeGroup(NodeTypeTags.CONSTANTS),
 							new TagNodeGroup(NodeTypeTags.COMPARE_NUMBER),
+							new TagNodeGroup(ModNodeTypes.DAMAGE_GROUP),
 							DirectNodeGroup.misc(NodeType.REGISTRY.stream().toArray(NodeType[]::new)))));
 
 			MinecraftClient.getInstance().setScreen(new EditorScreen(Text.literal("Test Editor"), graph));

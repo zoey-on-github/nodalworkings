@@ -4,6 +4,7 @@ import com.mojang.datafixers.util.Either;
 import io.github.mattidragon.nodeflow.graph.Connector;
 import io.github.mattidragon.nodeflow.graph.Graph;
 import io.github.mattidragon.nodeflow.graph.context.ContextType;
+import io.github.mattidragon.nodeflow.graph.data.DataType;
 import io.github.mattidragon.nodeflow.graph.data.DataValue;
 import io.github.mattidragon.nodeflow.graph.node.Node;
 import io.github.mattidragon.nodeflow.graph.node.NodeType;
@@ -19,7 +20,11 @@ public abstract class explosionNode extends Node {
 
     @Override
     public Connector<?>[] getOutputs() {
-        return new Connector[0];
+        return new Connector[] {
+                DataType.NUMBER.makeRequiredInput("first coord", this),
+                DataType.NUMBER.makeRequiredInput("second coord", this),
+                DataType.NUMBER.makeRequiredInput("third coord", this)
+        };
     }
 
     @Override
