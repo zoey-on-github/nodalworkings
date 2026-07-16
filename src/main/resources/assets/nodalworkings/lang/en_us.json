@@ -2,5 +2,5 @@
   "item.akemi.nodalworkings.test": "test",
   "item.akemi.nodalworkings.test2": "spellbook",
   "itemGroup.nodalworkings": "Nodal Items",
-  "group.minecraft.damage": "damage"
+  "group.akemi.nodalworkings.damage": "damage"
 }

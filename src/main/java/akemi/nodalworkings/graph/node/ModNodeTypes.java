@@ -5,5 +5,5 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 public class ModNodeTypes {
-    public static final TagKey<NodeType<?>> DAMAGE_GROUP = TagKey.of(NodeType.KEY, Identifier.of( "damage"));
+    public static final TagKey<NodeType<?>> DAMAGE_GROUP = TagKey.of(NodeType.KEY, Identifier.of("akemi.nodalworkings", "damage"));
 }
