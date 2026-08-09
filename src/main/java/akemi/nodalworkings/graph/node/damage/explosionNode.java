@@ -1,5 +1,6 @@
-package akemi.nodalworkings.graph.node;
+package akemi.nodalworkings.graph.node.damage;
 
+import akemi.nodalworkings.graph.node.ModNodeTypes;
 import com.mojang.datafixers.util.Either;
 import io.github.mattidragon.nodeflow.graph.Connector;
 import io.github.mattidragon.nodeflow.graph.Graph;
@@ -12,10 +13,10 @@ import net.minecraft.text.Text;
 
 import java.util.List;
 
-public abstract class explosionNode extends Node {
+public  class explosionNode extends Node {
 
-    protected explosionNode(NodeType<?> type, List<ContextType<?>> contexts, Graph graph) {
-        super(type, contexts, graph);
+    public explosionNode(Graph graph) {
+        super(ModNodeTypes.EXPLOSION, List.of(ContextType.SERVER_WORLD), graph);
     }
 
     @Override

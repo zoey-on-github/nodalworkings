@@ -1,5 +1,6 @@
 package akemi.nodalworkings;
 
+import akemi.nodalworkings.graph.node.ModNodeTypes;
 import com.jcraft.jorbis.Block;
 import io.github.mattidragon.nodeflow.graph.context.ContextType;
 import io.github.mattidragon.nodeflow.graph.data.DataType;
@@ -45,8 +46,8 @@ public class NodalWorkings implements ModInitializer {
             // to know which ones are allowed
             .addDataTypes(DataType.BOOLEAN, DataType.NUMBER, DataType.STRING)
             // Adds groups of nodes at a time. They are also used for grouping in the editor.
-            .addNodeGroups(new TagNodeGroup(NodeTypeTags.MATH), new TagNodeGroup(NodeTypeTags.ADVANCED_MATH), 
-             new TagNodeGroup(NodeTypeTags.LOGIC))
+            .addNodeGroups(new TagNodeGroup(NodeTypeTags.MATH), new TagNodeGroup(NodeTypeTags.ADVANCED_MATH),
+             new TagNodeGroup(NodeTypeTags.LOGIC), new TagNodeGroup(ModNodeTypes.DAMAGE_GROUP))
             .build();
 
 
@@ -56,6 +57,7 @@ public class NodalWorkings implements ModInitializer {
         // However, some things (like resources) may still be uninitialized.
         // Proceed with mild caution.
         nodalItems.initialize();
+        ModNodeTypes.register();
         PayloadTypeRegistry.playS2C().register(nodalPayload.ID, nodalPayload.CODEC);
         LOGGER.info("hai im julie :3");
 

@@ -22,7 +22,9 @@ public class NodalWorkingsClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
+
 		ClientPlayNetworking.registerGlobalReceiver(NodalWorkings.nodalPayload.ID, (nodalPayload, context) -> {
+			//TODO: i shouldnt be making an entire new graph every time the packet is recieved
 			ClientWorld world = context.client().world;
 			if(world == null) {
 				return;
@@ -41,6 +43,7 @@ public class NodalWorkingsClient implements ClientModInitializer {
 
 			MinecraftClient.getInstance().setScreen(new EditorScreen(Text.literal("Test Editor"), graph));
 		});
+		NodalWorkings.LOGGER.info(MinecraftClient.getInstance().getSession().getUsername() + " is cute");
 		}
 	static void testNodes() {
 	}
