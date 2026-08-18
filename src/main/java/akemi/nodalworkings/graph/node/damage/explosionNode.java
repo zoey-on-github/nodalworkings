@@ -20,7 +20,7 @@ public  class explosionNode extends Node {
     }
 
     @Override
-    public Connector<?>[] getOutputs() {
+    public Connector<?>[] getInputs() {
         return new Connector[] {
                 DataType.NUMBER.makeRequiredInput("first coord", this),
                 DataType.NUMBER.makeRequiredInput("second coord", this),
@@ -29,7 +29,7 @@ public  class explosionNode extends Node {
     }
 
     @Override
-    public Connector<?>[] getInputs() {
+    public Connector<?>[] getOutputs() {
         return new Connector[0];
     }
 
