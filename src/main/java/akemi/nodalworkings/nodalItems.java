@@ -25,7 +25,7 @@ public class nodalItems {
         ItemGroupEvents.modifyEntriesEvent(NodalItemsKey)
                 .register(ItemGroup -> {
                     ItemGroup.add(test);
-                    ItemGroup.add(test2);
+                    ItemGroup.add(spellbook);
                 });
         Registry.register(Registries.ITEM_GROUP,NodalItemsKey,NodalItems);
     }
@@ -42,6 +42,5 @@ public class nodalItems {
     }
 
     public static final Item test = register("test", Item::new, new Item.Settings());
-    //TODO: rename this at some point so /give is more clear
-    public static final Item test2 = register("test2", spellBook::new, new Item.Settings());
+    public static final Item spellbook = register("spellbook", spellBook::new, new Item.Settings());
 }
